@@ -1,7 +1,13 @@
 services: 
+<<<<<<< HEAD
   mongo_db_pastelaria:
     image: mongo:latest
     command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
+=======
+  mongo_db_pastelaria-pdv:
+    container_name: mongo_db_pastelaria-pdv
+    image: mongo:${VERSAO_MONGO}
+>>>>>>> a4f6597 (ref: refatorando image dockerfile de api e docker compose removendo mongo replica)
     ports:
       - "27017:27017"
     volumes:
@@ -9,10 +15,16 @@ services:
       - ./docker/mongo-init-replica.js:/docker-entrypoint-initdb.d/mongo-init-replica.js:ro
     restart: always
     networks:
-      - net-pastelaria
+      - net-pastelaria-pdv
   
+<<<<<<< HEAD
   api-pastelaria:
     container_name: api-pastelaria
+=======
+
+  api-pastelaria-pdv:
+    container_name: api-pastelaria-pdv
+>>>>>>> a4f6597 (ref: refatorando image dockerfile de api e docker compose removendo mongo replica)
     build: .
     image: api-pastelaria:latest
     ports:
@@ -20,13 +32,13 @@ services:
     environment:
       - MONGO_URI=mongodb://mongo_db_pastelaria:27017/pastelaria?replicaSet=rs0
     depends_on:
-      - mongo_db_pastelaria
+      - mongo_db_pastelaria-pdv
     restart: always
     networks:
-      - net-pastelaria
+      - net-pastelaria-pdv
 
 volumes:
   pastelaria_data:
 
 networks:
-  net-pastelaria:
+  net-pastelaria-pdv:
