@@ -13,7 +13,8 @@ services:
 
   api-pastelaria-pdv:
     container_name: api-pastelaria-pdv
-    build: .
+    build:
+      context: ${DIR_DOCKERFILE_API}
     image: api-pastelaria:${VERSAO_APP}
     ports:
       - "5000:5000"
@@ -22,6 +23,19 @@ services:
     depends_on:
       - mongo_db_pastelaria-pdv
     restart: always
+    networks:
+      - net-pastelaria-pdv
+
+
+  frontend-pastelaria-pdv:
+    container_name: frontend-pastelaria-pdv
+    build:
+      context: ${DIR_DOCKERFILE_FRONTEND}
+    image: frontend-pastelaria:${VERSAO_FRONTEND}
+    ports:
+      - "8080:80"
+    depends_on:
+      - api-pastelaria-pdv
     networks:
       - net-pastelaria-pdv
 
