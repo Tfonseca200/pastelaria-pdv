@@ -1,12 +1,1 @@
 .env
-<<<<<<< HEAD
-.env.*
-!.env.example
-dist/
-build/
-*.log
-npm-debug.log*
-npm-error.log*
-coverage/
-=======
->>>>>>> a4f6597 (ref: refatorando image dockerfile de api e docker compose removendo mongo replica)
