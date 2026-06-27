@@ -1,0 +1,15 @@
+services:
+  services: 
+  api-pastelaria-pdv:
+    container_name: api-pastelaria-pdv
+    image: api-pastelaria:${VERSAO_APP}
+    network_mode: "host"
+    environment:
+      - MONGO_URI=${MONGO_URI_PRD}
+    restart: always
+
+  frontend-pastelaria-pdv:
+    container_name: frontend-pastelaria-pdv
+    image: frontend-pastelaria:${VERSAO_FRONTEND}
+    network_mode: "host"
+    restart: always
