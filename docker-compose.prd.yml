@@ -1,5 +1,4 @@
-services:
-  services: 
+services: 
   api-pastelaria-pdv:
     container_name: api-pastelaria-pdv
     image: api-pastelaria:${VERSAO_APP}
@@ -13,3 +12,5 @@ services:
     image: frontend-pastelaria:${VERSAO_FRONTEND}
     network_mode: "host"
     restart: always
+    depends_on:
+        - api-pastelaria-pdv
